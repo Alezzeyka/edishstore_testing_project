@@ -1,5 +1,5 @@
 from Test_cycle.Regression.Regression_cycle import Regression_cycle
-from framework.WebDriver.WebDriver import WebDriver
+from WebDriver import WebDriver
 
 
 def test_cycle_execution(_driver: WebDriver):

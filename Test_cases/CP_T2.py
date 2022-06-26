@@ -1,9 +1,9 @@
 import time
 
-from framework.Test_Structures.Common_Test import Common_Test
-from framework.WebDriver.WebDriver import WebDriver
-from framework.Common_Page import Common_Page
-from framework.Login_Page import Login_Page
+from Test_cases.Common_Test import Common_Test
+from WebDriver import WebDriver
+from pom.Common_Page import Common_Page
+from pom.Login_Page import Login_Page
 
 
 class CP_T2(Common_Test):
