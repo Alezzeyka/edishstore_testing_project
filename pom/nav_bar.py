@@ -9,27 +9,27 @@ class NavBar(SeleniumBase):
         super().__init__(driver)
         self.driver = driver
 
-    __XPATH_NAV = "//*[@id=\"navbarCollapse\"]/ul"
-    NAV_LINK_TEXT = "Главная,Корзина,Тарелки,Чашки,Стаканы"
+    __XPATH_NAV = "//*[@id=\"navbarCollapse\"]/ul{}"
+    __NAV_LINK_TEXT = "Главная,Корзина,Тарелки,Чашки,Стаканы"
+    __LOGIN_BUTTON = "//*[@id=\"navbarCollapse\"]/form[2]/button"
+    __XPATH_AUTHORISED_USER_SIGN = "//*[@id=\"navbarCollapse\"]/div"
 
     def __get_nav_categories_xpath_dict(self) -> dict:
         categories_names = ("Тарелки", "Чашки", "Стаканы")
         nav_categories_xpath = {}.fromkeys(categories_names)
         for category_name in categories_names:
-            nav_categories_xpath[category_name.lower()] = self.__XPATH_NAV + f"[{categories_names.index(category_name)+1}]"
+            nav_categories_xpath[category_name.lower()] = self.__XPATH_NAV.format(categories_names.index(category_name)+1)
         return nav_categories_xpath
 
-    def get_nav_category_xpath(self, name: str) -> str:
+    def __get_nav_category_xpath(self, name: str) -> str:
         category_xpath_dict = self.__get_nav_categories_xpath_dict()
         return category_xpath_dict.get(name.lower())
 
-    def get_nav_links(self) -> List[WebElement]:
-        return self.are_visible("xpath", self.__XPATH_NAV, "Category Links Navbar")
-
-    def get_nav_links_text(self) -> str:
-        nav_links = self.get_nav_links()
-        nav_links_text = self.get_text_from_web_elements(nav_links)
-        return Utils.join_strings(nav_links_text, enters=True)
-
     def get_nav_link_by_name(self, name: str) -> WebElement:
-        return self.is_visible("xpath", self.get_nav_category_xpath(name), f"{name} navbar category")
+        return self.is_visible("xpath", self.__get_nav_category_xpath(name), f"{name} navbar category")
+
+    def get_login_button(self) -> WebElement:
+        return self.is_visible("xpath", self.__LOGIN_BUTTON, "Login Button")
+
+    def get_authorised_user_sign(self) -> WebElement:
+        return self.is_visible("xpath", self.__XPATH_AUTHORISED_USER_SIGN, "Authorised user greetings message")

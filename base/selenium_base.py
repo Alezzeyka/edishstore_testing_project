@@ -36,14 +36,6 @@ class SeleniumBase:
         return self.__wait.until(ec.invisibility_of_element_located((self.__get_selenium_by(find_by), locator)),
                                  locator_name)
 
-    def are_visible(self, find_by: str, locator: str, locator_name: str = None) -> List[WebElement]:
-        return self.__wait.until(ec.visibility_of_all_elements_located((self.__get_selenium_by(find_by), locator)),
-                                 locator_name)
-
-    def are_present(self, find_by: str, locator: str, locator_name: str = None) -> List[WebElement]:
-        return self.__wait.until(ec.presence_of_all_elements_located((self.__get_selenium_by(find_by), locator)),
-                                 locator_name)
-
     def get_text_from_web_elements(self, elements: List[WebElement]) -> List[str]:
         elements_text = list()
         for link in elements:

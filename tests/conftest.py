@@ -1,17 +1,16 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options as chrome_options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import time
 
 
 @pytest.fixture
-def get_chrome_options() -> chrome_options:
-    options = chrome_options()
+def get_chrome_options() -> ChromeOptions:
+    options = ChromeOptions()
     options.add_argument('chrome')
     options.add_argument("--start-maximized")
-    # options.add_argument("--window-size=800,600")
     return options
 
 
