@@ -11,7 +11,8 @@ class NavBar(SeleniumBase):
 
     __XPATH_NAV = "//*[@id=\"navbarCollapse\"]/ul{}"
     __NAV_LINK_TEXT = "Главная,Корзина,Тарелки,Чашки,Стаканы"
-    __LOGIN_BUTTON = "//*[@id=\"navbarCollapse\"]/form[2]/button"
+    __LOGIN_BUTTON = "/button[text()=\"Войти\"]"
+    __REGISTER_BUTTON = "/button[text()=\"Регистрация\"]"
     __XPATH_AUTHORISED_USER_SIGN = "//*[@id=\"navbarCollapse\"]/div"
 
     def __get_nav_categories_xpath_dict(self) -> dict:
@@ -30,6 +31,9 @@ class NavBar(SeleniumBase):
 
     def get_login_button(self) -> WebElement:
         return self.is_visible("xpath", self.__LOGIN_BUTTON, "Login Button")
+
+    def get_register_button(self) -> WebElement:
+        return self.is_visible("xpath", self.__REGISTER_BUTTON, "Register Button")
 
     def get_authorised_user_sign(self) -> WebElement:
         return self.is_visible("xpath", self.__XPATH_AUTHORISED_USER_SIGN, "Authorised user greetings message")
