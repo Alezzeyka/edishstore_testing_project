@@ -5,7 +5,7 @@ import pytest
 from base.common_test_data import CommonTestData
 from pom.login_form import LoginForm
 from pom.nav_bar import NavBar
-from pom.registerpage import RegisterForm
+from pom.register_form import RegisterForm
 
 
 @pytest.mark.usefixtures("setup")
@@ -22,23 +22,23 @@ class Test_CP_T1:
         name = test_data.get_test_data_by_title("name")
         login = test_data.get_test_data_by_title("login")
         password = test_data.get_test_data_by_title("password")
-        email = test_data.get_test_data_by_title("email")
         number = test_data.get_test_data_by_title("number")
+        email = test_data.get_test_data_by_title("email")
 
         nav_bar.get_register_button().click()
-        register_form.get_register_form_element_by_name("name")
-        register_form.get_register_form_element_by_name("login")
-        register_form.get_register_form_element_by_name("password")
-        register_form.get_register_form_element_by_name("re-password")
-        register_form.get_register_form_element_by_name("number")
-        register_form.get_register_form_element_by_name("email")
-        register_form.get_register_button().click()
+        register_form.get_register_form_element_by_title("Name").send_keys(name)
+        register_form.get_register_form_element_by_title("Login").send_keys(login)
+        register_form.get_register_form_element_by_title("Password").send_keys(password)
+        register_form.get_register_form_element_by_title("PhoneNumber").send_keys(number)
+        register_form.get_register_form_element_by_title("Email").send_keys(email)
+        time.sleep(1)
+        register_form.get_register_form_element_by_title("Зарегестрироваться").click()
 
         nav_bar.get_login_button().click()
-        login_form.get_login_form_element_by_name("login").send_keys(login)
-        login_form.get_login_form_element_by_name("password").send_keys(password)
-        login_form.get_login_form_element_by_name("Войти").click()
+        login_form.get_login_form_element_by_title("login").send_keys(login)
+        login_form.get_login_form_element_by_title("password").send_keys(password)
         time.sleep(1)
+        login_form.get_login_form_element_by_title("Войти").click()
 
         actual_name = nav_bar.get_authorised_user_sign().text[14:]
         expected_name = name

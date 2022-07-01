@@ -11,15 +11,15 @@ class NavBar(SeleniumBase):
 
     __XPATH_NAV = "//*[@id=\"navbarCollapse\"]/ul{}"
     __NAV_LINK_TEXT = "Главная,Корзина,Тарелки,Чашки,Стаканы"
-    __LOGIN_BUTTON = "/button[text()=\"Войти\"]"
-    __REGISTER_BUTTON = "/button[text()=\"Регистрация\"]"
+    __LOGIN_BUTTON = "//button[text()=\"Войти\"]"
+    __REGISTER_BUTTON = "//button[text()=\"Регистрация\"]"
     __XPATH_AUTHORISED_USER_SIGN = "//*[@id=\"navbarCollapse\"]/div"
 
     def __get_nav_categories_xpath_dict(self) -> dict:
         categories_names = ("Тарелки", "Чашки", "Стаканы")
         nav_categories_xpath = {}.fromkeys(categories_names)
         for category_name in categories_names:
-            nav_categories_xpath[category_name.lower()] = self.__XPATH_NAV.format(categories_names.index(category_name)+1)
+            nav_categories_xpath[category_name] = self.__XPATH_NAV.format(categories_names.index(category_name)+1)
         return nav_categories_xpath
 
     def __get_nav_category_xpath(self, name: str) -> str:

@@ -1,3 +1,5 @@
+from selenium.webdriver.remote.webelement import WebElement
+
 from base.selenium_base import SeleniumBase
 
 
@@ -6,9 +8,22 @@ class RegisterForm(SeleniumBase):
         super().__init__(driver)
         self.driver = driver
 
-    NAME_PATH = "//*[@id=\"Name\"]"
-    LOGIN_PATH = "//*[@id=\"Login\"]"
-    PASSWORD_PATH = "//*[@id=\"Password\"]"
-    EMAIL_PATH = "//*[@id=\"Email\"]"
-    PHONE_PATH = "//*[@id=\"PhoneNumber\"]"
-    BUTTON_PATH = "/html/body/div/div/form/input[1]"
+    __ELEMENT_FIELD_XPATH = "//*[@id=\"{}\"]"
+    __BUTTON_XPATH = "//input[@type=\"submit\"]"
+
+    def __get_register_form_elements_dict(self) -> dict:
+        names_list = ("Name", "Login", "Password", "Email", "PhoneNumber", "Зарегестрироваться")
+        register_form_elements_dict = dict.fromkeys(names_list)
+        for element in register_form_elements_dict:
+            if element != "Зарегестрироваться":
+                register_form_elements_dict[element] = self.__ELEMENT_FIELD_XPATH.format(element)
+            else:
+                register_form_elements_dict[element] = self.__BUTTON_XPATH
+        return register_form_elements_dict
+
+    def __get_register_form_xpath_by_title(self, title: str) -> str:
+        register_form_elements_dict = self.__get_register_form_elements_dict()
+        return register_form_elements_dict[title]
+
+    def get_register_form_element_by_title(self, title: str) -> WebElement:
+        return self.is_visible("xpath", self.__get_register_form_xpath_by_title(title), f"{title} field path")

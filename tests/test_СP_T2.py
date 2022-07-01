@@ -20,9 +20,9 @@ class Test_CP_T2:
         password = test_data.get_test_data_by_title("password")
 
         nav_bar.get_login_button().click()
-        login_form.get_login_form_element_by_name("login").send_keys(login)
-        login_form.get_login_form_element_by_name("password").send_keys(password)
-        login_form.get_login_form_element_by_name("Войти").click()
+        login_form.get_login_form_element_by_title("login").send_keys(login)
+        login_form.get_login_form_element_by_title("password").send_keys(password)
+        login_form.get_login_form_element_by_title("Войти").click()
         time.sleep(1)
 
         actual_name = nav_bar.get_authorised_user_sign().text[14:]
