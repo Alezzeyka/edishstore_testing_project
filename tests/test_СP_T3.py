@@ -16,15 +16,23 @@ class Test_CP_T2:
         login_form = LoginForm(driver)
 
         test_data = CommonTestData()
+
         login = test_data.get_login(rnd=False)
         password = test_data.get_password(rnd=False)
 
+        # preconditions
         nav_bar.get_login_button().click()
         login_form.get_login_form_element_by_title("login").send_keys(login)
         login_form.get_login_form_element_by_title("password").send_keys(password)
+        time.sleep(1)
         login_form.get_login_form_element_by_title("Войти").click()
+
         time.sleep(1)
 
-        actual_name = nav_bar.get_authorized_user_name().text[14:]
-        expected_name = test_data.get_name(rnd=False)
-        assert expected_name == actual_name
+        # test steps
+
+        nav_bar.get_authorized_logout().click()
+
+        actual_login_button_text = nav_bar.get_login_button().text
+        expected_login_button_text = test_data.get_login_text()
+        assert expected_login_button_text == actual_login_button_text

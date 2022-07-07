@@ -19,11 +19,11 @@ class Test_CP_T1:
 
         test_data = CommonTestData()
 
-        name = test_data.get_test_data_by_title("name")
-        login = test_data.get_test_data_by_title("login")
-        password = test_data.get_test_data_by_title("password")
-        number = test_data.get_test_data_by_title("number")
-        email = test_data.get_test_data_by_title("email")
+        name = test_data.get_name()
+        login = test_data.get_login()
+        password = test_data.get_password()
+        number = test_data.get_number()
+        email = test_data.get_email()
 
         nav_bar.get_register_button().click()
         register_form.get_register_form_element_by_title("Name").send_keys(name)
@@ -40,6 +40,6 @@ class Test_CP_T1:
         time.sleep(1)
         login_form.get_login_form_element_by_title("Войти").click()
 
-        actual_name = nav_bar.get_authorised_user_sign().text[14:]
+        actual_name = nav_bar.get_authorized_user_name().text[14:]
         expected_name = name
         assert expected_name == actual_name

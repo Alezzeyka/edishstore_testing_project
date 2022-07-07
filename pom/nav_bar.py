@@ -13,7 +13,9 @@ class NavBar(SeleniumBase):
     __NAV_LINK_TEXT = "Главная,Корзина,Тарелки,Чашки,Стаканы"
     __LOGIN_BUTTON = "//button[text()=\"Войти\"]"
     __REGISTER_BUTTON = "//button[text()=\"Регистрация\"]"
-    __XPATH_AUTHORISED_USER_SIGN = "//*[@id=\"navbarCollapse\"]/div"
+    __XPATH_AUTHORIZED_USER_NAME = "//*[@id=\"navbarCollapse\"]/div"
+    __XPATH_AUTHORIZED_USER_PERSONAL_INFO = "//*[@id=\"navbarCollapse\"]/a[1]"
+    __XPATH_AUTHORIZED_USER_LOGOUT = "//*[@id=\"navbarCollapse\"]/a[2]"
 
     def __get_nav_categories_xpath_dict(self) -> dict:
         categories_names = ("Тарелки", "Чашки", "Стаканы")
@@ -35,5 +37,12 @@ class NavBar(SeleniumBase):
     def get_register_button(self) -> WebElement:
         return self.is_visible("xpath", self.__REGISTER_BUTTON, "Register Button")
 
-    def get_authorised_user_sign(self) -> WebElement:
-        return self.is_visible("xpath", self.__XPATH_AUTHORISED_USER_SIGN, "Authorised user greetings message")
+    def get_authorized_user_name(self) -> WebElement:
+        return self.is_visible("xpath", self.__XPATH_AUTHORIZED_USER_NAME, "Authorised user name")
+
+    def get_authorized_personal_info(self) -> WebElement:
+        return self.is_visible("xpath", self.__XPATH_AUTHORIZED_USER_PERSONAL_INFO, "Authorised user Personal Info "
+                                                                                    "button")
+
+    def get_authorized_logout(self) -> WebElement:
+        return self.is_visible("xpath", self.__XPATH_AUTHORIZED_USER_LOGOUT, "Authorised user Logout Button")
