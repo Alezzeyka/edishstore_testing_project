@@ -10,7 +10,7 @@ from pom.nav_bar import NavBar
 @pytest.mark.usefixtures("setup")
 class Test_CP_T2:
 
-    def test_nav_category_links(self):
+    def test(self):
         driver = self.driver
         nav_bar = NavBar(driver)
         login_form = LoginForm(driver)

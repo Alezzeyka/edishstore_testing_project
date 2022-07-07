@@ -11,7 +11,7 @@ from pom.register_form import RegisterForm
 @pytest.mark.usefixtures("setup")
 class Test_CP_T1:
 
-    def test_nav_category_links(self):
+    def test(self):
         driver = self.driver
         nav_bar = NavBar(driver)
         register_form = RegisterForm(driver)
