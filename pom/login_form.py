@@ -10,6 +10,7 @@ class LoginForm(SeleniumBase):
 
     __LOGIN_FORM_FIELD_PATH = "//input[@name=\"{}\"]"
     __LOGIN_FORM_BUTTON_PATH = "//input[@value=\"Войти\"]"
+    __WRONG_LOGIN_DETAILS_MESSAGE_XPATH = "//div[@class=\"alert alert-danger\"]"
 
     def __get_login_form_elements_xpath_dict(self) -> dict:
         elements_names = ("login", "password", "Войти")
@@ -27,3 +28,7 @@ class LoginForm(SeleniumBase):
 
     def get_login_form_element_by_title(self, title: str) -> WebElement:
         return self.is_visible("xpath", self.__get_login_form_element_xpath(title), f"Login form {title} element")
+
+    def get_wrong_login_details_message(self):
+        return self.is_visible("xpath", self.__WRONG_LOGIN_DETAILS_MESSAGE_XPATH, f"Wrong login details message "
+                                                                                    f"element")
