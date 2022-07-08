@@ -12,7 +12,7 @@ class RegisterForm(SeleniumBase):
     __BUTTON_XPATH = "//input[@type=\"submit\"]"
     __REGISTER_VALIDATION_MESSAGES_XPATH = "//*[@data-valmsg-for=\"{}\"]"
 
-    def __get_register_form_elements_dict(self) -> dict:
+    def __get_register_form_xpath_dict(self) -> dict:
         names_list = ("Name", "Login", "Password", "Email", "PhoneNumber", "Зарегестрироваться")
         register_form_elements_dict = dict.fromkeys(names_list)
         for element in register_form_elements_dict:
@@ -30,7 +30,7 @@ class RegisterForm(SeleniumBase):
         return validating_messages_dict
 
     def __get_register_form_xpath_by_title(self, title: str) -> str:
-        register_form_elements_dict = self.__get_register_form_elements_dict()
+        register_form_elements_dict = self.__get_register_form_xpath_dict()
         return register_form_elements_dict[title]
 
     def get_register_form_element_by_title(self, title: str) -> WebElement:
@@ -40,5 +40,9 @@ class RegisterForm(SeleniumBase):
         register_validating_messages_dict = self.__get_register_validation_messages_dict()
         return register_validating_messages_dict[title]
 
-    def get_register_validation_message_element_by_title(self, title: str) -> WebElement:
+    def get_registration_form_validation_message_element_by_title(self, title: str) -> WebElement:
         return self.is_visible("xpath", self.__get_register_validating_messages_xpath_by_title(title), f"{title} validating message path")
+
+    def get_registration_form_email_validation_message_element(self):
+        email_input = self.get_register_form_element_by_title("Email")
+        return email_input.get_attribute("validationMessage")

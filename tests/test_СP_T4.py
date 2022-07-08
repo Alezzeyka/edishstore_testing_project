@@ -16,20 +16,20 @@ class Test_CP_T2:
         register_form = RegisterForm(driver)
 
         test_data = CommonTestData()
-        expected_empty_name_message = test_data.get_registration_validation_messages_by_title("name")
-        expected_empty_login_message = test_data.get_registration_validation_messages_by_title("login")
-        expected_empty_password_message = test_data.get_registration_validation_messages_by_title("password")
-        expected_empty_phone_message = test_data.get_registration_validation_messages_by_title("number")
-        expected_empty_email_message = test_data.get_registration_validation_messages_by_title("email")
+        expected_empty_name_message = test_data.get_registration_empty_form_validation_messages_by_title("name")
+        expected_empty_login_message = test_data.get_registration_empty_form_validation_messages_by_title("login")
+        expected_empty_password_message = test_data.get_registration_empty_form_validation_messages_by_title("password")
+        expected_empty_phone_message = test_data.get_registration_empty_form_validation_messages_by_title("number")
+        expected_empty_email_message = test_data.get_registration_empty_form_validation_messages_by_title("email")
 
         # test steps
         nav_bar.get_register_button().click()
         register_form.get_register_form_element_by_title("Зарегестрироваться").click()
-        actual_empty_name_message = register_form.get_register_validation_message_element_by_title("Name").text
-        actual_empty_login_message = register_form.get_register_validation_message_element_by_title("Login").text
-        actual_empty_password_message = register_form.get_register_validation_message_element_by_title("Password").text
-        actual_empty_phone_message = register_form.get_register_validation_message_element_by_title("PhoneNumber").text
-        actual_empty_email_message = register_form.get_register_validation_message_element_by_title("Email").text
+        actual_empty_name_message = register_form.get_registration_form_validation_message_element_by_title("Name").text
+        actual_empty_login_message = register_form.get_registration_form_validation_message_element_by_title("Login").text
+        actual_empty_password_message = register_form.get_registration_form_validation_message_element_by_title("Password").text
+        actual_empty_phone_message = register_form.get_registration_form_validation_message_element_by_title("PhoneNumber").text
+        actual_empty_email_message = register_form.get_registration_form_validation_message_element_by_title("Email").text
         time.sleep(1)
 
         assert expected_empty_name_message == actual_empty_name_message \

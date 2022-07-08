@@ -13,11 +13,16 @@ class CommonTestData:
                                              email="smith1234@domain.com",
                                              number="0936739573",
                                              password="B12345")
-        self.__registration_validation_messages_dict = dict(name="Укажите имя",
-                                                            login="Укажите логин",
-                                                            email="Укажите адрес почты",
-                                                            number="Укажите номер телефона",
-                                                            password="Укажите пароль")
+        self.__registration_empty_form_validation_messages_dict = dict(name="Укажите имя",
+                                                                       login="Укажите логин",
+                                                                       email="Укажите адрес почты",
+                                                                       number="Укажите номер телефона",
+                                                                       password="Укажите пароль")
+        self.__registration_form_email_validation_messages_dict = dict(missed_username="Введите часть адреса до "
+                                                                                       "символа \"@\". Адрес "
+                                                                                       "\"@gmail.com\" неполный.",
+                                                                       missed_domain="Недопустимое положение символа "
+                                                                                     "\".\" в адресе \".com\".")
         self.__nav_bar_button_text_dict = dict(login="Войти",
                                                registration="Регистрация")
         self.__information_messages_text_dict = dict(wrong_login_details="Неправильный логин или пароль")
@@ -29,8 +34,11 @@ class CommonTestData:
     def __get_nav_bar_data_by_title(self, key: str) -> str:
         return self.__nav_bar_text_data_dict.get(key)
 
-    def get_registration_validation_messages_by_title(self, key: str) -> str:
-        return self.__registration_validation_messages_dict.get(key)
+    def get_registration_empty_form_validation_messages_by_title(self, key: str) -> str:
+        return self.__registration_empty_form_validation_messages_dict.get(key)
+
+    def get_registration_form_email_validation_messages_by_title(self, key: str) -> str:
+        return self.__registration_form_email_validation_messages_dict.get(key)
 
     def __get_nav_bar_button_text_by_title(self, key: str) -> str:
         return self.__nav_bar_button_text_dict.get(key)
