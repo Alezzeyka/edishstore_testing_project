@@ -18,6 +18,8 @@ class CommonTestData:
                                                             email="Укажите адрес почты",
                                                             number="Укажите номер телефона",
                                                             password="Укажите пароль")
+        self.__nav_bar_button_text_dict = dict(login="Войти",
+                                               registration="Регистрация")
         self.__rand_range = randrange(100000, 999999)
 
     def __get_sample_user_data_by_title(self, key: str) -> str:
@@ -28,6 +30,9 @@ class CommonTestData:
 
     def get_registration_validation_messages_by_title(self, key: str) -> str:
         return self.__registration_validation_messages_dict.get(key)
+
+    def __get_nav_bar_button_text_by_title(self, key: str) -> str:
+        return self.__nav_bar_button_text_dict.get(key)
 
     def get_name(self, rnd=True):
         name = self.__get_sample_user_data_by_title("name")
@@ -60,4 +65,4 @@ class CommonTestData:
         return password
 
     def get_login_text(self):
-        return self.__get_nav_bar_data_by_title("login_text")
+        return self.__get_nav_bar_button_text_by_title("login")
