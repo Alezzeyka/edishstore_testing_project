@@ -22,7 +22,15 @@ class CommonTestData:
                                                                                        "символа \"@\". Адрес "
                                                                                        "\"@gmail.com\" неполный.",
                                                                        missed_domain="Недопустимое положение символа "
-                                                                                     "\".\" в адресе \".com\".")
+                                                                                     "\".\" в адресе \".com\".",
+                                                                       missed_second_domain="Недопустимое положение "
+                                                                                            "символа \".\" в адресе "
+                                                                                            "\"domain.\".",
+                                                                       missed_at_symbol="Адрес электронной почты "
+                                                                                        "должен содержать символ "
+                                                                                        "\"@\". В адресе "
+                                                                                        "\"domain.com\" отсутствует "
+                                                                                        "символ \"@\".")
         self.__nav_bar_button_text_dict = dict(login="Войти",
                                                registration="Регистрация")
         self.__information_messages_text_dict = dict(wrong_login_details="Неправильный логин или пароль")
