@@ -20,6 +20,7 @@ class CommonTestData:
                                                             password="Укажите пароль")
         self.__nav_bar_button_text_dict = dict(login="Войти",
                                                registration="Регистрация")
+        self.__information_messages_text_dict = dict(wrong_login_details="Неправильный логин или пароль")
         self.__rand_range = randrange(100000, 999999)
 
     def __get_sample_user_data_by_title(self, key: str) -> str:
@@ -66,3 +67,6 @@ class CommonTestData:
 
     def get_login_text(self):
         return self.__get_nav_bar_button_text_by_title("login")
+
+    def get_information_message_text_by_title(self, key: str) -> str:
+        return self.__information_messages_text_dict.get(key)
