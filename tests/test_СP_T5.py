@@ -5,6 +5,7 @@ from pom.login_form import LoginForm
 from pom.nav_bar import NavBar
 
 
+@pytest.mark.regression
 @pytest.mark.usefixtures("setup")
 class Test_CP_T5:
 
