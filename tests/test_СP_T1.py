@@ -8,6 +8,7 @@ from pom.nav_bar import NavBar
 from pom.register_form import RegisterForm
 
 
+@pytest.mark.regression
 @pytest.mark.usefixtures("setup")
 class Test_CP_T1:
 
