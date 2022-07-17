@@ -10,6 +10,7 @@ import time
 def get_chrome_options() -> ChromeOptions:
     options = ChromeOptions()
     options.add_argument('chrome')
+    options.add_argument("headless")
     options.add_argument("--start-maximized")
     return options
 

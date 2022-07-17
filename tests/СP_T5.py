@@ -7,9 +7,9 @@ from pom.nav_bar import NavBar
 
 @pytest.mark.regression
 @pytest.mark.usefixtures("setup")
-class Test_CP_T5:
+class CP_T5:
 
-    def test(self):
+    def execute(self):
         driver = self.driver
         nav_bar = NavBar(driver)
         login_form = LoginForm(driver)
