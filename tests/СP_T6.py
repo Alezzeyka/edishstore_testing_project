@@ -10,13 +10,12 @@ from pom.register_form import RegisterForm
 
 @pytest.mark.regression
 @pytest.mark.usefixtures("setup")
-class Test_CP_T1:
+class CP_T6:
 
-    def test(self):
+    def execute(self):
         driver = self.driver
         nav_bar = NavBar(driver)
         register_form = RegisterForm(driver)
-        login_form = LoginForm(driver)
 
         test_data = CommonTestData()
 
@@ -24,7 +23,7 @@ class Test_CP_T1:
         login = test_data.get_login()
         password = test_data.get_password()
         number = test_data.get_number()
-        email = test_data.get_email()
+        email = "@gmail.com"
 
         nav_bar.get_register_button().click()
         register_form.get_register_form_element_by_title("Name").send_keys(name)
@@ -32,15 +31,10 @@ class Test_CP_T1:
         register_form.get_register_form_element_by_title("Password").send_keys(password)
         register_form.get_register_form_element_by_title("PhoneNumber").send_keys(number)
         register_form.get_register_form_element_by_title("Email").send_keys(email)
-        time.sleep(1)
+
         register_form.get_register_form_element_by_title("Зарегестрироваться").click()
-
-        nav_bar.get_login_button().click()
-        login_form.get_login_form_element_by_title("login").send_keys(login)
-        login_form.get_login_form_element_by_title("password").send_keys(password)
         time.sleep(1)
-        login_form.get_login_form_element_by_title("Войти").click()
 
-        actual_name = nav_bar.get_authorized_user_name().text[14:]
-        expected_name = name
-        assert expected_name == actual_name
+        actual_warning = register_form.get_registration_form_email_validation_message_element()
+        expected_warning = test_data.get_registration_form_email_validation_messages_by_title("missed_username")
+        assert actual_warning == expected_warning

@@ -10,9 +10,9 @@ from pom.register_form import RegisterForm
 
 @pytest.mark.regression
 @pytest.mark.usefixtures("setup")
-class Test_CP_T7:
+class CP_T7:
 
-    def test(self):
+    def execute(self):
         driver = self.driver
         nav_bar = NavBar(driver)
         register_form = RegisterForm(driver)
