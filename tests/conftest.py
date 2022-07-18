@@ -4,6 +4,8 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import time
+import logging
+import os
 
 
 @pytest.fixture
@@ -19,6 +21,8 @@ def get_chrome_options() -> ChromeOptions:
 def get_webdriver(get_chrome_options) -> webdriver:
     services = Service(ChromeDriverManager().install())
     options = get_chrome_options
+    logging.getLogger('WDM').setLevel(logging.NOTSET)
+    os.environ['WDM_LOG'] = "false"
     driver = webdriver.Chrome(options=options, service=services)
     driver.maximize_window()
     return driver
