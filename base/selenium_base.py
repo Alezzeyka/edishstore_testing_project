@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
-from typing import List
 
 
 class SeleniumBase:
@@ -35,13 +34,3 @@ class SeleniumBase:
     def is_not_present(self, find_by: str, locator: str, locator_name: str = None) -> WebElement:
         return self.__wait.until(ec.invisibility_of_element_located((self.__get_selenium_by(find_by), locator)),
                                  locator_name)
-
-    def get_text_from_web_elements(self, elements: List[WebElement]) -> List[str]:
-        elements_text = list()
-        for link in elements:
-            elements_text.append(link.text)
-        return elements_text
-
-    def get_element_by_text(self, elements: List[WebElement], name: str) -> WebElement:
-        name = name.lower()
-        return [element for element in elements if element.text.lower() == name][0]
