@@ -3,7 +3,6 @@ import time
 import pytest
 
 from base.common_test_data import CommonTestData
-from pom.login_form import LoginForm
 from pom.nav_bar import NavBar
 from pom.register_form import RegisterForm
 

@@ -1,5 +1,3 @@
-from selenium.webdriver.remote.webelement import WebElement
-
 from base.selenium_base import SeleniumBase
 
 

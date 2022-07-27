@@ -1,7 +1,5 @@
-from typing import List, Dict
 from selenium.webdriver.remote.webelement import WebElement
 from base.selenium_base import SeleniumBase
-from base.utils import Utils
 
 
 class NavBar(SeleniumBase):
